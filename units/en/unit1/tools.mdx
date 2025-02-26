@@ -70,8 +70,6 @@ We will implement a simplified **calculator** tool that will just multiply two i
 def calculator(a: int, b: int) -> int:
     """Multiply two integers."""
     return a * b
-
-print(calculator.to_string())
 ```
 
 So our tool is called `calculator`, it **multiplies two integers**, and it requires the following inputs:
@@ -84,7 +82,7 @@ The output of the tool is another integer number that we can describe like this:
 
 All of these details are important. Let's put them together in a text string that describes our tool for the LLM to understand.
 
-```
+```text
 Tool Name: calculator, Description: Multiply two integers., Arguments: a: int, b: int, Outputs: int
 ```
 
@@ -124,9 +122,9 @@ print(calculator.to_string())
 
 Note the `@tool` decorator before the function definition.
 
-With the implementation we'll see next, we will be able to retrieve the following text automatically from the source code:
+With the implementation we'll see next, we will be able to retrieve the following text automatically from the source code via the `to_string()` function provided by the decorator:
 
-```
+```text
 Tool Name: calculator, Description: Multiply two integers., Arguments: a: int, b: int, Outputs: int
 ```
 
@@ -190,7 +188,7 @@ It may seem complicated, but if we go slowly through it we can see what it does.
 - **`name`** (*str*): The name of the tool.
 - **`description`** (*str*): A brief description of what the tool does.
 - **`function`** (*callable*): The function the tool executes.
-- **`input_arguments`** (*list*): The expected input parameters.
+- **`arguments`** (*list*): The expected input parameters.
 - **`outputs`** (*str* or *list*): The expected outputs of the tool.
 - **`__call__()`**: Calls the function when the tool instance is invoked.
 - **`to_string()`**: Converts the tool's attributes into a textual representation.
@@ -274,7 +272,7 @@ print(calculator.to_string())
 
 And we can use the `Tool`'s `to_string` method to automatically retrieve a text suitable to be used as a tool description for an LLM:
 
-```
+```text
 Tool Name: calculator, Description: Multiply two integers., Arguments: a: int, b: int, Outputs: int
 ```
 
@@ -282,7 +280,7 @@ The description is **injected** in the system prompt. Taking the example with wh
 
 <img src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit1/Agent_system_prompt_tools.png" alt="System prompt for tools"/>
 
-In the [Actions](actions) section, we will learn more about how an Agent can **Call** this tool we just created.
+In the [Actions](actions.mdx) section, we will learn more about how an Agent can **Call** this tool we just created.
 
 ---
 
@@ -296,6 +294,6 @@ To summarize, we learned:
 
 - *Why Tools Are Essential*: They enable Agents to overcome the limitations of static model training, handle real-time tasks, and perform specialized actions.
 
-Now, we can move on to the [Agent Workflow](agent-steps-and-structure) where you’ll see how an Agent observes, thinks, and acts. This **brings together everything we’ve covered so far** and sets the stage for creating your own fully functional AI Agent.
+Now, we can move on to the [Agent Workflow](agent-steps-and-structure.mdx) where you’ll see how an Agent observes, thinks, and acts. This **brings together everything we’ve covered so far** and sets the stage for creating your own fully functional AI Agent.
 
 But first, it's time for another short quiz!
